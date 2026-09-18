@@ -1,0 +1,23 @@
+[project]
+name = "f1-mcp"
+version = "0.1.0"
+description = "MCP server that exposes F1 data (FastF1) as tools"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.0.0,<2.0.0",  # [cli] extra pulls in typer, needed for `mcp dev`/Inspector
+    "fastf1>=3.3",
+    "pandas>=2.0,<3.0",
+    "numpy>=1.24"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/f1_mcp"]

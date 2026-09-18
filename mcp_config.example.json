@@ -1,0 +1,9 @@
+{
+    "mcpServers": {
+        "f1-data": {
+            "command": "python",
+            "args": ["-m", "f1_mcp.server"],
+            "cwd": "/full/path/to/f1-mcp"
+        }
+    }
+}
