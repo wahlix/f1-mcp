@@ -40,3 +40,32 @@ class TyreStrategyResult:
             "total_pit_stops": self.total_pit_stops,
             "stints": [s.__dict__ for s in self.stints],
         }
+
+@dataclass
+class RaceResultEntry:
+    position: int | None # None if unclassified (i.e. DNF)
+    classified_position: str # e.g. "1", "R" (retired), "DQ" (disqualified)
+    driver: str
+    driver_number: str
+    team: str
+    grid_position: int | None
+    status: str # "Finished", "+1 Lap", "Retired", etc.
+    points: float
+    laps_completed: int
+    gap_to_winner_s: float | None # seconds behind the winner
+    total_time_s: float | None # winner's total race time in seconds (winner only)
+
+@dataclass
+class RaceResultsSummary:
+    year: int
+    gp: str
+    session: str
+    results: list[RaceResultEntry] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            "year": self.year,
+            "gp": self.gp,
+            "session": self.session,
+            "results": [r.__dict__ for r in self.results],
+        }
